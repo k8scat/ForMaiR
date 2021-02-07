@@ -1,11 +1,9 @@
-# Cafe
+# ForMaiR - auto Forward eMails with custom Rules
 
 <p align="center">
-    <a href="https://github.com/k8scat/Cafe">GitHub</a> |
-    <a href="https://gitee.com/hsowan/Cafe">码云</a>
+    <a href="https://github.com/k8scat/ForMaiR">GitHub</a> |
+    <a href="https://gitee.com/hsowan/ForMaiR">码云</a>
 </p>
-
-Auto forward emails with custom rules.
 
 ## Custom rules
 
@@ -23,7 +21,7 @@ email = {
     'html_content': ''
 }
 
-transfer_rules = [
+forward_rules = [
     {
         'to_addrs': [''],
         'from_addrs': [''],

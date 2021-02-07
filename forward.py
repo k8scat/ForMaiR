@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Name: Cafe
+# Name: ForMaiR - auto Forward eMails with custom Rules
 # Author: K8sCat <k8scat@gmail.com>
 # Function: Auto Forward Emails with Custom rules.
 
@@ -33,7 +33,7 @@ smtp_port = 465
 
 pop3_resp_status_ok = b'+OK'
 
-transfer_rules = [
+forward_rules = [
     {
         'to_addrs': [''],
         'from_addrs': [''],
@@ -211,7 +211,7 @@ def forward_emails(start: int, end: int):
 def check_forward_rule(email: dict) -> list:
     to_addrs = []
     from_addr = email['from_addr'][1]
-    for rule in transfer_rules:
+    for rule in forward_rules:
         subject_pattern = re.compile(
             rule['subject_pattern']) if rule['subject_pattern'] else None
         content_pattern = re.compile(

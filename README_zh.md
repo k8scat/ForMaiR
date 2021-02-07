@@ -1,4 +1,4 @@
-# Cafe
+# ForMaiR - auto Forward eMails with custom Rules
 
 <p align="center">
     <a href="https://github.com/k8scat/Cafe">GitHub</a> |
