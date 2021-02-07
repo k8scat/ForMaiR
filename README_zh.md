@@ -1,8 +1,8 @@
 # ForMaiR - auto Forward eMails with custom Rules
 
 <p align="center">
-    <a href="https://github.com/k8scat/Cafe">GitHub</a> |
-    <a href="https://gitee.com/hsowan/Cafe">码云</a>
+    <a href="https://github.com/k8scat/ForMaiR">GitHub</a> |
+    <a href="https://gitee.com/hsowan/ForMaiR">码云</a>
 </p>
 
 自定义规则的邮件自动转发工具。
