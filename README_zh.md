@@ -35,7 +35,7 @@ transfer_rules = [
 
 ## 关于 `last_email_count`
 
-`Cafe` 支持自动转发指定范围内的邮件。
+支持自动转发指定范围内的邮件。
 
 ```python
 [last_email_count+1, email_count+1]

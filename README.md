@@ -33,7 +33,7 @@ forward_rules = [
 
 ## About `last_email_count`
 
-`Cafe` support forward emails in the specified range.
+Support forward emails in the specified range.
 
 ```python
 [last_email_count+1, email_count+1]
