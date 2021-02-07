@@ -1,0 +1,36 @@
+pop3:
+  host: ''
+  port: 0
+  user: ''
+  password: ''
+  enable_ssl: true
+
+smtp:
+  host: ''
+  port: 0
+  user: ''
+  password: ''
+  enable_ssl: true
+  real_name: ''
+
+rules:
+  -
+    to_addrs:
+      - 't1@example.com'
+      - 't2@example.com'
+    from_addrs:
+      - 'f1@example.com'
+      - 'f2@example.com'
+    subject_pattern: ''
+    content_pattern: ''
+  -
+    to_addrs:
+      - 't1@example.com'
+      - 't2@example.com'
+    from_addrs:
+      - 'f1@example.com'
+      - 'f2@example.com'
+    subject_pattern: ''
+    content_pattern: ''
+
+index_file: '.index'

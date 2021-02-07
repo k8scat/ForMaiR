@@ -13,31 +13,44 @@ Emails which meet follow rules will be auto forwarded to `to_addrs`.
 - [x] Email `subject` meet `subject_pattern`
 - [x] Email `plain_content` or `html_content` meet `content_pattern`
 
-```python
-email = {
-    'from_addr': ('realname', 'noal@example.com'),
-    'subject': '',
-    'plain_content': '',
-    'html_content': ''
-}
-
-forward_rules = [
-    {
-        'to_addrs': [''],
-        'from_addrs': [''],
-        'subject_pattern': r'',
-        'content_pattern': r''
-    }
-]
+```yaml
+rules:
+  -
+    to_addrs:
+      - 't1@example.com'
+      - 't2@example.com'
+    from_addrs:
+      - 'f1@example.com'
+      - 'f2@example.com'
+    subject_pattern: ''
+    content_pattern: ''
+  -
+    to_addrs:
+      - 't1@example.com'
+      - 't2@example.com'
+    from_addrs:
+      - 'f1@example.com'
+      - 'f2@example.com'
+    subject_pattern: ''
+    content_pattern: ''
 ```
 
-## About `last_email_count`
+## Only forwarding the new emails
 
-Support forward emails in the specified range.
+Support forwarding new emails in the specified range.
+
+- Get `last_email_index` from the _index_file_ (default 0 if not exists)
+- Get `email_count` from `pop3_server.stat`
 
 ```python
-[last_email_count+1, email_count+1]
+for index in range(last_email_index+1, email_count+1):
+    pass
 ```
 
-- `last_email_count` is read from the `index_file` (default 0 if not exists)
-- `email_count` is from `pop3_server.stat`
+## Install requirements
+
+Using config file in `yaml` format.
+
+```python
+pip3 install -r requirements.txt
+```

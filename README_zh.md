@@ -15,31 +15,44 @@
 - [x] 邮件的主题（`subject`）匹配指定的主题正则表达式（`subject_pattern`）
 - [x] 邮件的内容（`plain_content` 或 `html_content`）匹配指定的内容正则表达式（`content_pattern`）
 
-```python
-email = {
-    'from_addr': ('realname', 'noal@example.com'),
-    'subject': '',
-    'plain_content': '',
-    'html_content': ''
-}
-
-transfer_rules = [
-    {
-        'to_addrs': [''],
-        'from_addrs': [''],
-        'subject_pattern': r'',
-        'content_pattern': r''
-    }
-]
+```yaml
+rules:
+  -
+    to_addrs:
+      - 't1@example.com'
+      - 't2@example.com'
+    from_addrs:
+      - 'f1@example.com'
+      - 'f2@example.com'
+    subject_pattern: ''
+    content_pattern: ''
+  -
+    to_addrs:
+      - 't1@example.com'
+      - 't2@example.com'
+    from_addrs:
+      - 'f1@example.com'
+      - 'f2@example.com'
+    subject_pattern: ''
+    content_pattern: ''
 ```
 
-## 关于 `last_email_count`
+## 只转发新邮件
 
-支持自动转发指定范围内的邮件。
+支持转发指定范围内的新邮件。
+
+- 从 _index_file_ 文件中获取上次读取的邮件位置（`last_email_index`） (如果文件不存在，则默认是 0)
+- 从 `pop3_server.stat` 获取当前邮件的总数（`email_count`）
 
 ```python
-[last_email_count+1, email_count+1]
+for index in range(last_email_index+1, email_count+1):
+    pass
 ```
 
-- `last_email_count` 从 `index_file` 文件中读取 (如果文件不存在，则默认是 0)
-- `email_count` 从 `pop3_server.stat` 获取
+## 安装依赖
+
+该工具使用 `yaml` 格式的配置文件。
+
+```python
+pip3 install -r requirements.txt
+```
