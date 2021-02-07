@@ -1,9 +1,30 @@
-# ForMaiR - auto Forward eMails with custom Rules
+# [ForMaiR](https://formair.io) - auto Forward eMails with custom Rules
 
 <p align="center">
     <a href="https://github.com/k8scat/ForMaiR">GitHub</a> |
     <a href="https://gitee.com/hsowan/ForMaiR">码云</a>
 </p>
+
+## Usage
+
+```bash
+# clone repo
+git clone git@github.com:k8scat/ForMaiR.git
+cd ForMaiR
+
+# copy `template/config.yaml` as your own
+cp template/config.yaml config.yaml
+
+# init python3 environment
+virtualenv -p python3 .venv
+source .venv/bin/activate
+
+# install requirements
+pip install -r requirements.txt
+
+# start forwarding emails by your custom rules
+python main.py config.yaml
+```
 
 ## Custom rules
 
@@ -45,12 +66,4 @@ Support forwarding new emails in the specified range.
 ```python
 for index in range(last_email_index+1, email_count+1):
     pass
-```
-
-## Install requirements
-
-Using config file in `yaml` format.
-
-```python
-pip3 install -r requirements.txt
 ```

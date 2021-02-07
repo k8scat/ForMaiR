@@ -1,4 +1,4 @@
-# ForMaiR - auto Forward eMails with custom Rules
+# [ForMaiR](https://formair.io) - auto Forward eMails with custom Rules
 
 <p align="center">
     <a href="https://github.com/k8scat/ForMaiR">GitHub</a> |
@@ -6,6 +6,27 @@
 </p>
 
 自定义规则的邮件自动转发工具。
+
+## 使用
+
+```bash
+# 克隆代码仓
+git clone git@gitee.com:hsowan/ForMaiR.git
+cd ForMaiR
+
+# 从 template/config.yaml 复制一份配置文件
+cp template/config.yaml config.yaml
+
+# 初始化 python3 的环境
+virtualenv -p python3 .venv
+source .venv/bin/activate
+
+# 安装依赖
+pip install -r requirements.txt
+
+# 开始根据自定义的规则进行转发邮件
+python main.py config.yaml
+```
 
 ## 自定义规则
 
@@ -47,12 +68,4 @@ rules:
 ```python
 for index in range(last_email_index+1, email_count+1):
     pass
-```
-
-## 安装依赖
-
-该工具使用 `yaml` 格式的配置文件。
-
-```python
-pip3 install -r requirements.txt
 ```
