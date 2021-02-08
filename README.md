@@ -1,8 +1,12 @@
 # [ForMaiR](https://formair.io) - auto Forward eMails with custom Rules
 
 <p align="center">
-    <a href="https://github.com/k8scat/ForMaiR">GitHub</a> |
-    <a href="https://gitee.com/hsowan/ForMaiR">码云</a>
+  <a href="https://www.codefactor.io/repository/github/k8scat/formair"><img src="https://www.codefactor.io/repository/github/k8scat/formair/badge" alt="CodeFactor" /></a>
+</p>
+
+<p>
+  <a href="https://github.com/k8scat/ForMaiR">GitHub</a> |
+  <a href="https://gitee.com/hsowan/ForMaiR">码云</a>
 </p>
 
 ## Usage
