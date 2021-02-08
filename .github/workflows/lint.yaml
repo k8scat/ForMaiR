@@ -1,0 +1,18 @@
+name: PyLint
+
+on: push
+
+jobs:
+
+  release:
+    name: PyLint
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Lint Code
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+      run: |
+        pip install pylint
+        pylint --good-names=f,e,s formair/*.py main.py

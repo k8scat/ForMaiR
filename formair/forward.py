@@ -18,11 +18,11 @@ def forward_emails(pop3_server: pop3.POP3, smtp_server: smtp.SMTP, start: int, e
         for index in range(start, end):
             pop3_server.login()
             try:
-                logging.info(f'email index: {index}')
+                logging.info('email index: %d', index)
                 email = pop3_server.get_email(index)
                 if email is None:
                     continue
-                logging.info(f'get email {email["subject"]} from {email["from_addr"]}')
+                logging.info('get email %s from %s', email['subject'], email['from_addr'])
                 to_addrs = _get_toaddrs_by_rules(rules, email)
                 if len(to_addrs) > 0:
                     smtp_server.send_email(to_addrs, email['subject'], email['plain_content'],
@@ -30,7 +30,7 @@ def forward_emails(pop3_server: pop3.POP3, smtp_server: smtp.SMTP, start: int, e
             finally:
                 pop3_server.server.close()
     except Exception as e:
-        logging.error(f'forward email failed: {e}')
+        logging.error('forward email failed: %s', e)
     
     return index - 1
 

@@ -1,7 +1,7 @@
 import os
-import yaml
-
 from email.mime.application import MIMEApplication
+
+import yaml
 
 
 def load_config(cfg_file: str) -> dict:
@@ -22,11 +22,12 @@ def update_last_email_index(index_file: str, count: int):
         f.write(str(count))
 
 
-def generate_attachment(content: bytes, filename: str = '', content_disposition: str = '') -> MIMEApplication:
-        attachment = MIMEApplication(content, Name=filename)
-        if content_disposition:
-            attachment['Content-Disposition'] = content_disposition
-        else:
-            attachment.add_header('Content-Disposition',
-                                  'attachment', filename=filename)
-        return attachment
+def generate_attachment(content: bytes, filename: str = '',
+                        content_disposition: str = '') -> MIMEApplication:
+    attachment = MIMEApplication(content, Name=filename)
+    if content_disposition:
+        attachment['Content-Disposition'] = content_disposition
+    else:
+        attachment.add_header('Content-Disposition',
+                              'attachment', filename=filename)
+    return attachment
