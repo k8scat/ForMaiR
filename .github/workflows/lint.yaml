@@ -9,10 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Lint Code
+    - name: Use python3.x
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
+    
+    - name: Lint Code
       run: |
-        pip install pylint
-        pylint --good-names=f,e,s formair/*.py main.py
+          pip install pylint
+          pylint --good-names=f,e,s formair/*.py main.py
