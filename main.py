@@ -38,7 +38,6 @@ def init_email_count(pop3_server: pop3.POP3) -> int:
 
 
 def main():
-    """main func"""
     config = load_config(sys.argv[1])
     index_file = config['index_file'] if config['index_file'] else DEFAULT_INDEX_FILE
 
