@@ -136,8 +136,15 @@ class POP3:
         return emails
 
     def get_email(self, index: int) -> dict:
-        resp, lines, octets = self.server.retr(index)
-        assert resp.startswith(self.status_ok), f'get email failed: {resp}'
+        try:
+            resp, lines, octets = self.server.retr(index)
+        except Exception as e:
+            logging.error('get email failed: %s', e)
+            return None
+        
+        if not resp.startswith(self.status_ok):
+            logging.error('get email failed: %s', resp)
+            return None
         logging.info('email size: %d', octets)
 
         # print(lines)
