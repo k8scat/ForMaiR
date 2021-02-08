@@ -1,6 +1,9 @@
 name: Lint
 displayName: '代码检查'
-triggers: push
+triggers:
+  push:
+    - matchType: PRECISE               # 触发方式，支持多种触发策略，PRECISE 为精准触发（触发分支和配置分支名完全匹配）
+      branch: master 
 stages:
   - stage:
       name: lint
