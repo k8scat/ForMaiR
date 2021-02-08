@@ -22,6 +22,5 @@ jobs:
         pip install pylint
 
     - name: Lint with pylint
-      run: |
-          pip install pylint
-          pylint --good-names=f,e,s formair/*.py main.py
+      run: pylint --good-names=f,e,s formair/*.py main.py
+          
