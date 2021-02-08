@@ -1,0 +1,18 @@
+name: Lint
+displayName: '代码检查'
+triggers: push
+stages:
+  - stage:
+      name: lint
+      displayName: 'Lint Code'
+      failFast: true
+      steps:
+        - step: pythonbuild@1
+          name: lint-code
+          displayName: 'Python Step'
+          inputs:
+            pythonVersion: 3.7
+            goals: |
+              pip install -r pylint
+              pylint --good-names=f,e,s formair/*.py main.py
+              

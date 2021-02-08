@@ -15,42 +15,38 @@ class POP3:
     status_ok = b'+OK'
     server = None
 
-    def __init__(self, host: str, user: str, password: str, port: int = 0, enable_ssl: bool = True,
-                 max_login_retry: int = 3, login_interval: int = 10, debug_level: int = 0):
+    def __init__(self, host: str, user: str, password: str, port: int = 0,
+                 enable_ssl: bool = True):
         self.host = host
         self.port = port
         self.enable_ssl = enable_ssl
         self.user = user
         self.password = password
-        self.max_login_retry = max_login_retry
-        self.login_interval = login_interval
-        self.debug_level = debug_level
         if self.port is None:
             if self.enable_ssl:
                 self.port = poplib.POP3_PORT
             else:
                 self.port = poplib.POP3_SSL_PORT
-
-    def login(self):
+    
+    def login(self, max_login_retry: int = 3, login_interval: int = 10):
         self.server = poplib.POP3_SSL(host=self.host, port=self.port)
-        self.server.set_debuglevel(self.debug_level)
+        # self.server.set_debuglevel(1)
         self.server.user(self.user)
 
         # pop3_server login retry: poplib.error_proto: b'-ERR login fail, please try again later'
-        for count in range(self.max_login_retry):
+        for count in range(max_login_retry):
             try:
                 self.server.pass_(self.password)
                 break
             except Exception as e:
-                logging.warning(f'pop3 server login failed: {e}')
-                if count == self.max_login_retry - 1:
+                logging.warning('pop3 server login failed: %s', e)
+                if count == max_login_retry - 1:
                     raise 'cannot login pop3 server'
-                logging.info(
-                    f'try to login pop3 server again in {self.login_interval}s')
-                time.sleep(self.login_interval)
+                logging.info('try to login pop3 server again in %ds', login_interval)
+                time.sleep(login_interval)
 
     @staticmethod
-    def guess_charset(msg: Message):
+    def guess_charset(msg: Message) -> str:
         charset = msg.get_charset()
         if charset is None:
             # text/plain; charset="utf-8"
@@ -64,8 +60,8 @@ class POP3:
                     charset = part[pos + 8:].strip()
                     break
 
-        if charset is None:
-            charset = 'utf-8'
+            if charset is None:
+                charset = 'utf-8'
         return charset
 
     @staticmethod
@@ -123,17 +119,17 @@ class POP3:
                     part.get_payload(), content_disposition=content_disposition)
                 email['attachments'].append(attachment)
             else:
-                logging.info(f'ignore content_type: {content_type}')
+                logging.info('ignore content_type: %s', content_type)
 
         return email
 
     def stat(self) -> int:
         email_count, total_size = self.server.stat()
-        logging.info(f'emails count: {email_count}, total size: {total_size}')
+        logging.info('emails count: %d, total size: %d', email_count, total_size)
         return email_count
         
 
-    def list_all_emails(self):
+    def list_all_emails(self) -> list:
         # emails: [b'1 82923', b'2 2184', ...]
         resp, emails, _ = self.server.list()
         assert resp.startswith(self.status_ok), f'get email failed: {resp}'
@@ -142,7 +138,7 @@ class POP3:
     def get_email(self, index: int) -> dict:
         resp, lines, octets = self.server.retr(index)
         assert resp.startswith(self.status_ok), f'get email failed: {resp}'
-        logging.info(f'email size: {octets}')
+        logging.info('email size: %d', octets)
 
         # print(lines)
         # for line in lines:
@@ -152,7 +148,7 @@ class POP3:
         try:
             msg_content = b'\r\n'.join(lines).decode('utf-8')
         except Exception as e:
-            logging.warning(f'decode message failed: {e}')
+            logging.warning('decode message failed: %s', e)
             logging.info('try to find message charset...')
             charset = ''
             for line in lines:
@@ -166,16 +162,14 @@ class POP3:
                             charset = part[pos + 8:].strip()
                             break
             if charset == '':
-                logging.warning(
-                    f'message charset not found so still use utf-8 but ignore errors')
+                logging.warning('message charset not found and use utf-8')
                 charset = 'utf-8'
             else:
-                logging.info(f'found message charset: {charset}')
+                logging.info('found message charset: %s', charset)
             try:
-                msg_content = b'\r\n'.join(lines).decode(
-                    charset, errors='ignore')
+                msg_content = b'\r\n'.join(lines).decode(charset, errors='ignore')
             except Exception as e:
-                logging.error(f'decode message failed again: {e}')
+                logging.error('decode message failed again: %s', e)
                 return None
 
         msg = Parser().parsestr(msg_content)
