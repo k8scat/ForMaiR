@@ -31,8 +31,8 @@ def forward_emails(pop3_server: pop3.POP3, smtp_server: smtp.SMTP, start: int, e
                 pop3_server.server.close()
     except Exception as e:
         logging.error(f'forward email failed: {e}')
-    finally:
-        return index - 1
+    
+    return index - 1
 
 
 def _get_toaddrs_by_rules(rules: list, email: dict) -> list:
