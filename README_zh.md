@@ -11,25 +11,30 @@
 
 自定义规则的邮件自动转发工具。
 
-## 使用
+## 安装
+
+### 使用 `pip`
 
 ```bash
-# 克隆代码仓
-git clone git@gitee.com:hsowan/ForMaiR.git
-cd ForMaiR
+$ python3 -m pip install --user formair
+```
 
-# 从 template/config.yaml 复制一份配置文件
-cp template/config.yaml config.yaml
+### 使用 `git`
 
-# 初始化 python3 的环境
-virtualenv -p python3 .venv
-source .venv/bin/activate
+```bash
+$ git clone git@github.com:k8scat/ForMaiR.git
+$ cd ForMaiR
+$ python3 setup.py install
+```
 
-# 安装依赖
-pip install -r requirements.txt
+## 使用
 
-# 开始根据自定义的规则进行转发邮件
-python main.py config.yaml
+参考配置：[template/config.yaml](https://github.com/k8scat/ForMaiR/blob/master/template/config.yaml)
+
+```bash
+$ formair # 从 ./config.yaml 中加载配置
+
+$ formair /path/to/config.yaml # 从 /path/to/config.yaml 中加载配置
 ```
 
 ## 自定义规则

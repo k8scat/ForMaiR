@@ -9,25 +9,30 @@
   <a href="https://gitee.com/hsowan/ForMaiR">码云</a>
 </p>
 
-## Usage
+## Installation
+
+### Install using `pip`
 
 ```bash
-# clone repo
-git clone git@github.com:k8scat/ForMaiR.git
-cd ForMaiR
+$ python3 -m pip install --user formair
+```
 
-# copy `template/config.yaml` as your own
-cp template/config.yaml config.yaml
+### Install using `git`
 
-# init python3 environment
-virtualenv -p python3 .venv
-source .venv/bin/activate
+```bash
+$ git clone git@github.com:k8scat/ForMaiR.git
+$ cd ForMaiR
+$ python3 setup.py install
+```
 
-# install requirements
-pip install -r requirements.txt
+## Usage
 
-# start forwarding emails by your custom rules
-python main.py config.yaml
+Refer config: [template/config.yaml](https://github.com/k8scat/ForMaiR/blob/master/template/config.yaml)
+
+```bash
+$ formair # load config from ./config.yaml
+
+$ formair /path/to/config.yaml # load config from /path/to/config.yaml
 ```
 
 ## Custom rules

@@ -14,6 +14,7 @@ logging.basicConfig(level=logging.INFO,
                     datefmt="%Y-%m-%d %H:%M:%S")
 
 DEFAULT_INDEX_FILE = '.index'
+DEFAULT_CONFIG_FILE = './config.yaml'
 
 
 def init_pop3_server(config: dict) -> pop3.POP3:
@@ -38,7 +39,10 @@ def init_email_count(pop3_server: pop3.POP3) -> int:
 
 
 def main():
-    config = load_config(sys.argv[1])
+    cfg_file = DEFAULT_CONFIG_FILE
+    if len(sys.argv) == 2:
+        cfg_file = sys.argv[1]
+    config = load_config(cfg_file)
     index_file = config['index_file'] if config['index_file'] else DEFAULT_INDEX_FILE
 
     pop3_server = init_pop3_server(config['pop3'])
@@ -54,5 +58,4 @@ def main():
 
 
 if __name__ == '__main__':
-    assert len(sys.argv) == 2
     main()
