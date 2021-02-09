@@ -76,3 +76,7 @@ Support forwarding new emails in the specified range.
 for index in range(last_email_index+1, email_count+1):
     pass
 ```
+
+## Docs
+
+[https://formair.io](https://formair.io)
