@@ -1,15 +1,7 @@
 import logging
-import os
 import re
 
 from formair import pop3, smtp
-
-cur_dir = os.path.dirname(__file__)
-index_file = os.path.join(cur_dir, 'email_count.txt')
-
-
-smtp_host = ''
-smtp_port = 465
 
 
 def forward_emails(pop3_server: pop3.POP3, smtp_server: smtp.SMTP, start: int, end: int, rules: list) -> int:
