@@ -1,6 +1,6 @@
 # [ForMaiR](https://formair.io) - auto Forward eMails with custom Rules
 
-<p align="center">
+<p>
   <a href="https://www.codefactor.io/repository/github/k8scat/formair"><img src="https://www.codefactor.io/repository/github/k8scat/formair/badge" alt="CodeFactor" /></a>
 </p>
 
@@ -11,20 +11,30 @@
 
 自定义规则的邮件自动转发工具。
 
+## 使用 Docker 快速开始
+
+参考配置：[template/config.yaml](https://github.com/k8scat/ForMaiR/blob/master/template/config.yaml)
+
+```bash
+docker run -d --rm \
+-v /path/to/config.yaml:/formair/conf/config.yaml \
+k8scat/formair:latest
+```
+
 ## 安装
 
 ### 使用 `pip`
 
 ```bash
-$ python3 -m pip install --user formair
+python3 -m pip install --user formair
 ```
 
 ### 使用 `git`
 
 ```bash
-$ git clone git@github.com:k8scat/ForMaiR.git
-$ cd ForMaiR
-$ python3 setup.py install
+git clone git@github.com:k8scat/ForMaiR.git
+cd ForMaiR
+python3 setup.py install
 ```
 
 ## 使用
@@ -32,9 +42,9 @@ $ python3 setup.py install
 参考配置：[template/config.yaml](https://github.com/k8scat/ForMaiR/blob/master/template/config.yaml)
 
 ```bash
-$ formair # 从 ./config.yaml 中加载配置
+formair # 从 ./config.yaml 中加载配置
 
-$ formair /path/to/config.yaml # 从 /path/to/config.yaml 中加载配置
+formair /path/to/config.yaml # 从 /path/to/config.yaml 中加载配置
 ```
 
 ## 自定义规则

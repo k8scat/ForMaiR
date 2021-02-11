@@ -1,5 +1,7 @@
 import setuptools
 
+requirements = ['PyYaml']
+
 with open("README.md", 'r', encoding="utf-8") as f:
     long_description = f.read()
 
@@ -14,5 +16,5 @@ setuptools.setup(
     url='https://github.com/k8scat/ForMaiR',
     packages=setuptools.find_packages(),
     entry_points={'console_scripts': ['formair = formair.formair:main']},
-    install_requires=['PyYaml'],
+    install_requires=requirements,
 )

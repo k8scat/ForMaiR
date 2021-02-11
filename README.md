@@ -1,6 +1,6 @@
 # [ForMaiR](https://formair.io) - auto Forward eMails with custom Rules
 
-<p align="center">
+<p>
   <a href="https://www.codefactor.io/repository/github/k8scat/formair"><img src="https://www.codefactor.io/repository/github/k8scat/formair/badge" alt="CodeFactor" /></a>
 </p>
 
@@ -9,20 +9,30 @@
   <a href="https://gitee.com/hsowan/ForMaiR">码云</a>
 </p>
 
+## Quick start using Docker
+
+Refer config: [template/config.yaml](https://github.com/k8scat/ForMaiR/blob/master/template/config.yaml)
+
+```bash
+docker run -d --rm \
+-v /path/to/config.yaml:/formair/conf/config.yaml \
+k8scat/formair:latest
+```
+
 ## Installation
 
 ### Install using `pip`
 
 ```bash
-$ python3 -m pip install --user formair
+python3 -m pip install --user formair
 ```
 
 ### Install using `git`
 
 ```bash
-$ git clone git@github.com:k8scat/ForMaiR.git
-$ cd ForMaiR
-$ python3 setup.py install
+git clone git@github.com:k8scat/ForMaiR.git
+cd ForMaiR
+python3 setup.py install
 ```
 
 ## Usage
@@ -30,9 +40,9 @@ $ python3 setup.py install
 Refer config: [template/config.yaml](https://github.com/k8scat/ForMaiR/blob/master/template/config.yaml)
 
 ```bash
-$ formair # load config from ./config.yaml
+formair # load config from ./config.yaml
 
-$ formair /path/to/config.yaml # load config from /path/to/config.yaml
+formair /path/to/config.yaml # load config from /path/to/config.yaml
 ```
 
 ## Custom rules
