@@ -7,7 +7,7 @@ WORKDIR /formair
 
 COPY . .
 
-RUN python -m pip install --upgrade pip setuptools wheel && \
+RUN python -m pip install --upgrade pip setuptools && \
 pip install -r requirements.txt && \
 python setup.py install
 

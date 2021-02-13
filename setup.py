@@ -7,7 +7,7 @@ with open("README.md", 'r', encoding="utf-8") as f:
 
 setuptools.setup(
     name='formair',
-    version='1.3.0',
+    version='1.3.1',
     author='K8sCat',
     author_email='k8scat@gmail.com',
     description='auto Forward eMails with custom Rules',
