@@ -15,6 +15,7 @@ pipeline {
                 ]) {
                     sh '''
                     python -m pip install -i http://mirrors.aliyun.com/pypi/simple/ \
+                    --trusted-host mirrors.aliyun.com \
                     --upgrade pip setuptools wheel twine
                     pip install -r requirements.txt
                     python setup.py sdist bdist_wheel
