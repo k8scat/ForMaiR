@@ -14,6 +14,9 @@ pipeline {
                     usernameVariable: 'username')
                 ]) {
                     sh '''
+                    sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+                    apk install build-base
+
                     python -m pip install -i http://mirrors.aliyun.com/pypi/simple/ \
                     --trusted-host mirrors.aliyun.com \
                     --upgrade pip setuptools wheel twine
