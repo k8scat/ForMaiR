@@ -15,7 +15,7 @@ pipeline {
                 ]) {
                     sh '''
                     sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
-                    apk add build-base
+                    apk add build-base libffi-dev
 
                     python -m pip install -i http://mirrors.aliyun.com/pypi/simple/ \
                     --trusted-host mirrors.aliyun.com \
