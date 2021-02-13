@@ -16,5 +16,11 @@ setuptools.setup(
     url='https://github.com/k8scat/ForMaiR',
     packages=setuptools.find_packages(),
     entry_points={'console_scripts': ['formair = formair.formair:main']},
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
     install_requires=requirements,
+    python_requires='>=3.6',
 )
