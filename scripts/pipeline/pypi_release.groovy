@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'python:3.6-alpine'
+            args '-v /var/jenkins_home/.cache/pip:/root/.cache/pip'
         }
     }
     stages {
@@ -13,7 +14,8 @@ pipeline {
                     usernameVariable: 'username')
                 ]) {
                     sh '''
-                    python -m pip install --upgrade pip setuptools wheel twine
+                    python -m pip install -i http://mirrors.aliyun.com/pypi/simple/ \
+                    --upgrade pip setuptools wheel twine
                     pip install -r requirements.txt
                     python setup.py sdist bdist_wheel
                     twine upload -u $username -p $password dist/*
