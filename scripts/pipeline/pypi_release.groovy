@@ -14,9 +14,10 @@ pipeline {
                     usernameVariable: 'username')
                 ]) {
                     sh '''
-                    pip install -r requirements.txt
+                    python -m pip install --upgrade setuptools wheel twine
+                    python -m pip install -r requirements.txt
                     python setup.py sdist bdist_wheel
-                    twine upload -u $username -p $password dist/*
+                    python -m twine upload -u $username -p $password dist/*
                     '''
                 }
             }
