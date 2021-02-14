@@ -19,15 +19,16 @@ pipeline {
                     passwordVariable: 'password',
                     usernameVariable: 'username')
                 ]) {
-                    sh """
-                    docker login -u ${username} -p ${password}
-                    tags=(${params.tags//,/ })
-                    for tag in ${tags[@]}
-                    do
-                        docker build -t k8scat/formair:${tag} .
-                        docker push k8scat/formair:${tag}
-                    done
-                    """
+                    script {
+                        sh "docker login -u ${username} -p ${password}"
+                        def tags = "${params.tags}".split(',')
+                        for (tag in tags) {
+                            sh """
+                            docker build -t k8scat/formair:${tag} .
+                            docker push k8scat/formair:${tag}
+                            """
+                        }
+                    }
                 }
             }
         }
