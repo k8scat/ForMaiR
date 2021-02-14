@@ -21,7 +21,7 @@ pipeline {
                 ]) {
                     sh """
                     docker login -u ${username} -p ${password}
-                    tags=${params.tags//,/ }
+                    tags=(${params.tags//,/ })
                     for tag in ${tags[@]}
                     do
                         docker build -t k8scat/formair:${tag} .
