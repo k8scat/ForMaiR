@@ -7,6 +7,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 # 安装 gcc: https://wiki.alpinelinux.org/wiki/GCC
 # 安装 libffi-dev: https://github.com/jfloff/alpine-python/issues/44
+# https://stackoverflow.com/questions/66118337/how-to-get-rid-of-cryptography-build-error
 RUN apk add --update \
 build-base \
 libffi-dev \
