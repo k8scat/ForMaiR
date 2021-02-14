@@ -5,9 +5,9 @@ pipeline {
 
     parameters {
         string (
-            name: 'tag',
+            name: 'tags',
             defaultValue: 'latest',
-            description: 'build tag'
+            description: 'build tags seperated with comma, for example: latest,1.3.1'
         )
     }
 
@@ -21,8 +21,12 @@ pipeline {
                 ]) {
                     sh """
                     docker login -u ${username} -p ${password}
-                    docker build -t k8scat/formair:${params.tag} .
-                    docker push k8scat/formair:latest
+                    tags=${params.tags//,/ }
+                    for tag in ${tags[@]}
+                    do
+                        docker build -t k8scat/formair:${tag} .
+                        docker push k8scat/formair:${tag}
+                    done
                     """
                 }
             }
